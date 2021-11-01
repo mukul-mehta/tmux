@@ -189,7 +189,7 @@ main()
 
     if [ $plugin = "spotify" ]; then
         IFS=' ' read -r -a colors  <<< $(get_tmux_option "@dracula-spotify-colors" "green dark_gray")
-        script="#(osascript $current_dir/spotify.sh)"
+        script="#(osascript $current_dir/spotify.applescript)"
     fi
 
     if $show_powerline; then
