@@ -23,6 +23,7 @@ main()
   show_border_contrast=$(get_tmux_option "@dracula-border-contrast" false)
   show_day_month=$(get_tmux_option "@dracula-day-month" false)
   show_refresh=$(get_tmux_option "@dracula-refresh-rate" 5)
+  show_spotify=$(get_tmux_option "@dracula-show-spotify" false)
   IFS=' ' read -r -a plugins <<< $(get_tmux_option "@dracula-plugins" "battery network weather")
 
   # Dracula Color Pallette
@@ -184,6 +185,11 @@ main()
       else
         script="%a %m/%d %I:%M %p ${timezone} "
       fi
+    fi
+
+    if [ $plugin = "spotify" ]; then
+        IFS=' ' read -r -a colors  <<< $(get_tmux_option "@dracula-spotify-colors" "green dark_gray")
+        script="#(osascript $current_dir/spotify.sh)"
     fi
 
     if $show_powerline; then
